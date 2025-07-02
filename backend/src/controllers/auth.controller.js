@@ -6,15 +6,15 @@ export const signup = async (req, res) => {
     const {fullName, email, password} = req.body;
     try{
         if(!fullName || !email || !password){
-            return res.status(400).json({message: "All fields are required."});
+            return res.status(400).json({message: "All fields are required"});
         }
         if (password.length < 8){
-            res.status(400).json({message: "Password must be at least 8 characters long."})
+            res.status(400).json({message: "Password must be at least 8 characters long"})
         }
 
         const user = await User.findOne({email});
         if (user){
-            return res.status(400).json({message: "User already exists."});
+            return res.status(400).json({message: "User already exists"});
         }
 
         const  salt  = await bcrypt.genSalt(10);
@@ -43,9 +43,9 @@ export const signup = async (req, res) => {
 
     } catch(error){
         console.error("Error in signup controller:", error.message);
-        res.status(500).json({message: "Internal server error."});
+        res.status(500).json({message: "Internal server error"});
     }
-}
+};
 
 export const login = async (req, res) => {
     const {email, password} = req.body;
@@ -69,18 +69,24 @@ export const login = async (req, res) => {
 
     } catch(error){
         console.log("Error in login controller", error.message);
-        res.status(500).json({message: "Internal server error."});
+        res.status(500).json({message: "Internal server error"});
     }
-}
+};
 
 export const logout = async (req, res) => {
     try{
         res.cookie("jwt", "", {maxAge: 0})
-        res.status(200).json({message: "Logged out successfully."});
+        res.status(200).json({message: "Logged out successfully"});
     } catch(error){
         console.error("Error in logout controller:", error.message);
-        res.status(500).json({message: "Internal server error."});
+        res.status(500).json({message: "Internal server error"});
 
     }
+};
+
+export const updateProfile = async (req, res) => {
+
 }
+
+
 
