@@ -5,6 +5,8 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
+import {axiosInstance} from "./lib/axios..js";
+import {useAuthStore} from "./store/useAuthStore.js";
 
 
 
@@ -12,6 +14,7 @@ import ProfilePage from "./pages/ProfilePage.jsx";
 
 
 const App = () => {
+    const {authUser} = useAuthStore();
     return (
         <div>
             <Navbar/>
